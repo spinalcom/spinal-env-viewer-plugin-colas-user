@@ -4,8 +4,6 @@ import {
   SPINAL_RELATION_LST_PTR_TYPE,
   SpinalGraphService
 } from 'spinal-env-viewer-graph-service';
-import getGraph from './spinal-connector';
-
 const ColasContextName = 'ColasUser';
 const ColasRelationName = 'ColasUserRelationName';
 const ColasRelationType = SPINAL_RELATION_LST_PTR_TYPE;
