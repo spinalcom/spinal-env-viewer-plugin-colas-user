@@ -1,0 +1,21 @@
+{
+  "name": "spinal-emv-viewer-plugin-colas-user",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "author": "Spinalcom",
+  "license": "Spinalcom",
+  "dependencies": {
+    "spinal-env-viewer-context-menu-service": "git+https://github.com/spinalcom/spinal-env-viewer-context-menu-service.git",
+    "spinal-env-viewer-graph-service": "git+https://github.com/spinalcom/spinal-graph-service.git",
+    "spinal-env-viewer-panel-manager-service": "git+https://github.com/spinalcom/spinal-env-viewer-panel-manager-service.git",
+    "vue": "^2.6.10",
+    "vuetify": "^1.5.16"
+  },
+  "browserify": {
+    "transform": [
+      "vueify",
+      "babelify"
+    ]
+  }
+}
