@@ -1,40 +1,50 @@
 <template>
     <v-app dark>
-    <v-dialog
-            v-model="open">
-        <v-card class="card"
-        >
-            <v-card-title>
-                <h3> Information utilisateur</h3>
-            </v-card-title>
-
-            <v-card-text >
-                <v-text-field
-                        label="E-mail"
-                        :rules="[rules.email]"
-                        placeholder="Placeholder"
-                        outlined
-                        type="email"
-                        v-model="email"
-                ></v-text-field>
-                <v-text-field
-                        label="Departement"
-                        placeholder="Placeholder"
-                        :rules="[rules.zip]"
-                        outlined
-                        v-model="departement"
-                ></v-text-field>
-                <v-checkbox
-                        v-model="isAdmin"
-                        label="Admin"
-                ></v-checkbox>
-            </v-card-text>
-            <v-card-actions >
-                <v-btn @click="save"> Créer</v-btn>
-            </v-card-actions>
-        </v-card>
-    </v-dialog>
+        <v-dialog
+                v-model="open"  width="500">
+            <v-card>
+                <v-card-title>
+                    <h3> Information utilisateur</h3>
+                </v-card-title>
+                <v-card-text>
+                    <v-text-field
+                            label="Nom"
+                            placeholder="Placeholder"
+                            outlined
+                            v-model="name"
+                    ></v-text-field>
+                    <v-text-field
+                            label="E-mail"
+                            :rules="[rules.email]"
+                            placeholder="Placeholder"
+                            outlined
+                            type="email"
+                            v-model="email"
+                    ></v-text-field>
+                    <v-text-field
+                            label="Code postal"
+                            placeholder="Placeholder"
+                            :rules="[rules.zip]"
+                            outlined
+                            v-model="zipCode"
+                    ></v-text-field>
+                    <v-checkbox
+                            v-model="isAdmin"
+                            label="Admin"
+                    ></v-checkbox>
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn @click="save">
+                        Créer
+                    </v-btn>
+                    <v-btn @click="onClose">
+                        close
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-app>
+
 </template>
 
 <script>
@@ -44,8 +54,9 @@
     name: 'Create User',
     data() {
       return {
+        name: '',
         email: '',
-        departement: -1,
+        zipCode: -1,
         rules: {
           email: ( value ) => {
             const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -63,30 +74,36 @@
     computed: {
       displayError() {
         if (this.notSaved) return false;
-        return !(this.email !== '' && this.departement !== -1);
+        return !(this.email !== '' && this.zipCode !== -1);
       },
     },
     methods: {
+      reset: function(){
+        this.name = "";
+        this.email = "";
+        this.zipCode = -1;
+        this.isAdmin =false;
+      },
       opened: function ( option ) {
+        this.reset()
         this.open = true;
       },
       removed: function () {
-
       },
       closeDialog: function () {
 
       },
+      onClose: function(){
+        this.open = false;
+      },
       validate() {
-        return this.email !== '' && this.departement !== -1;
+        return this.name !== '' &&this.email !== '' && this.zipCode !== -1;
       },
       save() {
         this.notSaved = false;
-
         if (!this.validate()) return;
-        const event = {};
-        event.email = this.email;
-        event.departement = this.departement;
-        this.userManager.register( this.email, this.departement, this.isAdmin )
+        this.userManager.register( this.name, this.email, this.zipCode,
+          this.isAdmin )
         this.open = false;
       },
     },

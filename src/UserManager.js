@@ -41,7 +41,7 @@ export default class UserManager {
       });
   }
 
-  register(email, zip, isAdmin) {
+  register(name, email, zip, isAdmin) {
     return this.initialized
       .then(() => this.colasUserContext.getChildren([ColasRelationName]))
       .then((children) => {
@@ -56,6 +56,7 @@ export default class UserManager {
           user.add_attr({
             zipCode: zip, nbConnection: 1, lastCo: new Date().getTime(), isAdmin, email,
           });
+          user.info.add_attr({name});
           return this.colasUserContext.addChildInContext(user, ColasRelationName, ColasRelationType, this.colasUserContext);
         }
         return undefined;
