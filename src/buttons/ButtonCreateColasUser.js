@@ -1,5 +1,4 @@
 import { SpinalContextApp } from 'spinal-env-viewer-context-menu-service';
-import { SpinalGraphService } from "spinal-env-viewer-graph-service";
 
 
 const { spinalPanelManagerService } = require( "spinal-env-viewer-panel-manager-service" );
