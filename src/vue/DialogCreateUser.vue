@@ -1,36 +1,40 @@
 <template>
-    <div class="card"
-    >
-        <div class="header">
-            <h3> Information utilisateur</h3>
-        </div>
+    <v-app dark>
+    <v-dialog
+            v-model="open">
+        <div class="card"
+        >
+            <div class="header">
+                <h3> Information utilisateur</h3>
+            </div>
 
-        <div class="body">
-            <v-text-field
-                    label="E-mail"
-                    :rules="[rules.email]"
-                    placeholder="Placeholder"
-                    outlined
-                    type="email"
-                    v-model="email"
-            ></v-text-field>
-            <v-text-field
-                    label="Departement"
-                    placeholder="Placeholder"
-                    :rules="[rules.zip]"
-                    outlined
-                    v-model="departement"
-            ></v-text-field>
-            <v-checkbox
-                    v-model="isAdmin"
-                    label="Admin"
-            ></v-checkbox>
+            <div class="body">
+                <v-text-field
+                        label="E-mail"
+                        :rules="[rules.email]"
+                        placeholder="Placeholder"
+                        outlined
+                        type="email"
+                        v-model="email"
+                ></v-text-field>
+                <v-text-field
+                        label="Departement"
+                        placeholder="Placeholder"
+                        :rules="[rules.zip]"
+                        outlined
+                        v-model="departement"
+                ></v-text-field>
+                <v-checkbox
+                        v-model="isAdmin"
+                        label="Admin"
+                ></v-checkbox>
+            </div>
+            <div class="footer">
+                <v-btn @click="save"> Créer</v-btn>
+            </div>
         </div>
-        <div class="footer">
-            <v-btn @click="save"> Créer</v-btn>
-        </div>
-    </div>
-
+    </v-dialog>
+    </v-app>
 </template>
 
 <script>
@@ -52,7 +56,8 @@
         },
         isAdmin: false,
         notSaved: true,
-        userManager: null
+        userManager: null,
+        open: false
       };
     },
     computed: {
@@ -62,7 +67,15 @@
       },
     },
     methods: {
+      opened: function ( option ) {
+        this.open = true;
+      },
+      removed: function () {
 
+      },
+      closeDialog: function () {
+
+      },
       validate() {
         return this.email !== '' && this.departement !== -1;
       },
@@ -74,7 +87,7 @@
         event.email = this.email;
         event.departement = this.departement;
         this.userManager.register( this.email, this.departement, this.isAdmin )
-        this.$emit( 'saved', event );
+        this.open = false;
       },
     },
     mounted() {
