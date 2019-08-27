@@ -2,13 +2,13 @@
     <v-app dark>
     <v-dialog
             v-model="open">
-        <div class="card"
+        <v-card class="card"
         >
-            <div class="header">
+            <v-card-title>
                 <h3> Information utilisateur</h3>
-            </div>
+            </v-card-title>
 
-            <div class="body">
+            <v-card-text class="body">
                 <v-text-field
                         label="E-mail"
                         :rules="[rules.email]"
@@ -28,11 +28,11 @@
                         v-model="isAdmin"
                         label="Admin"
                 ></v-checkbox>
-            </div>
-            <div class="footer">
+            </v-card-text>
+            <v-card-actions class="footer">
                 <v-btn @click="save"> Créer</v-btn>
-            </div>
-        </div>
+            </v-card-actions>
+        </v-card>
     </v-dialog>
     </v-app>
 </template>
