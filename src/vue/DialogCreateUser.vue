@@ -8,7 +8,7 @@
                 <h3> Information utilisateur</h3>
             </v-card-title>
 
-            <v-card-text class="body">
+            <v-card-text >
                 <v-text-field
                         label="E-mail"
                         :rules="[rules.email]"
@@ -29,7 +29,7 @@
                         label="Admin"
                 ></v-checkbox>
             </v-card-text>
-            <v-card-actions class="footer">
+            <v-card-actions >
                 <v-btn @click="save"> Créer</v-btn>
             </v-card-actions>
         </v-card>
@@ -97,31 +97,5 @@
 </script>
 
 <style scoped>
-    .header {
-        position: absolute;
-        top: 10%;
-    }
 
-    .card {
-        width: 100%;
-        height: 100%;
-        background: rgba(216, 216, 216, 100);
-        border-radius: 1%;
-        box-shadow: 1px solid rgba(0, 0, 0, 0.50);
-        padding: 3%;
-        position: relative;
-    }
-
-    .footer {
-        position: absolute;
-        padding-bottom: 5%;
-        bottom: 0;
-    }
-
-    .body {
-        position: absolute;
-        top: 20%;
-        left: 25%;
-        width: 50%;
-    }
 </style>
