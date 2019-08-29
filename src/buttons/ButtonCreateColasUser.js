@@ -22,7 +22,14 @@ export class ButtonCreateColasUser extends SpinalContextApp {
   
   isShown( option ) {
     if (option.selectedNode.name.get() !== ColasContextName)
-      this.label = "edit-user";
+    {
+      this.label = "Edit user";
+      this.icon = 'edit'
+    }    else
+    {
+      this.label = "Create user";
+      this.icon = 'add'
+    }
     if (option.selectedNode.name.get() === ColasContextName
       || option.selectedNode.type.get() === ColasUserType)
       return Promise.resolve( true );

@@ -14,6 +14,12 @@
                             v-model="name"
                     ></v-text-field>
                     <v-text-field
+                            label="Password"
+                            placeholder="Placeholder"
+                            outlined
+                            v-model="password"
+                    ></v-text-field>
+                    <v-text-field
                             label="E-mail"
                             :rules="[rules.email]"
                             placeholder="Placeholder"
@@ -65,6 +71,7 @@
         id: '',
         name: '',
         email: '',
+        password: '',
         zipCode: -1,
         rules: {
           email: ( value ) => {
@@ -99,6 +106,9 @@
         this.email = model.email.get();
         this.zipCode = model.zip.get();
         this.isAdmin = model.isAdmin.get();
+        if (model.hasOwnProperty('password'))
+          this.password = model.password;
+
         this.id = model.id.get();
         this.edit = true
       },
@@ -129,7 +139,8 @@
           this.isAdmin );
         else
           this.userManager.editUser({name: this.name, email: this.email, zip:
-            this.zipCode, isAdmin: this.isAdmin, id: this.id});
+            this.zipCode, isAdmin: this.isAdmin, id: this.id, password:
+            this.password});
         this.open = false;
       },
     },
