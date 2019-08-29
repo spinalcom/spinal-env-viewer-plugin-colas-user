@@ -21,6 +21,8 @@ export class ButtonCreateColasUser extends SpinalContextApp {
   }
   
   isShown( option ) {
+    if (option.selectedNode.name.get() !== ColasContextName)
+      this.label = "edit-user";
     if (option.selectedNode.name.get() === ColasContextName
       || option.selectedNode.type.get() === ColasUserType)
       return Promise.resolve( true );
