@@ -7,6 +7,7 @@ import {
 const ColasContextName = 'ColasUser';
 const ColasRelationName = 'ColasUserRelationName';
 const ColasRelationType = SPINAL_RELATION_LST_PTR_TYPE;
+const ColasUserType = 'ColasUser';
 
 /**
  * Class used to retrieve the user
@@ -52,11 +53,17 @@ export default class UserManager {
       })
       .then((canRegister) => {
         if (canRegister) {
-          const user = new SpinalNode('info', undefined, undefined);
-          user.add_attr({
-            zipCode: zip, nbConnection: 1, lastCo: new Date().getTime(), isAdmin, email,
-          });
-          user.info.add_attr({name});
+          const user = new SpinalNode( email, undefined, undefined );
+          const info = {
+            name: email,
+            id: user.info.id.get(),
+            type: ColasUserType,
+            connections: [],
+            isAdmin,
+            email,
+            zip
+          };
+          user.mod_attr( 'info', info);
           return this.colasUserContext.addChildInContext(user, ColasRelationName, ColasRelationType, this.colasUserContext);
         }
         return undefined;
