@@ -68,7 +68,8 @@
         isAdmin: false,
         notSaved: true,
         userManager: null,
-        open: false
+        open: false,
+        edit: false
       };
     },
     computed: {
@@ -84,10 +85,19 @@
         this.zipCode = -1;
         this.isAdmin =false;
       },
+      init: function(model){
+        this.name = model.name.get();
+        this.email = model.email.get();
+        this.zipCode = model.zip.get();
+        this.isAdmin = model.isAdmin.get();
+        this.edit = true
+      },
       opened: function ( option ) {
         if (typeof option === "undefined")
              this.reset();
-        console.log("option", option)
+        else
+          this.init(option)
+
         this.open = true;
       },
       removed: function () {
@@ -104,8 +114,12 @@
       save() {
         this.notSaved = false;
         if (!this.validate()) return;
+        if (!this.edit)
         this.userManager.register( this.name, this.email, this.zipCode,
           this.isAdmin );
+        else
+          this.userManager.edit({name: this.name, email: this.email, zip:
+            this.zipCode, isAdmin: this.isAdmin})
         this.open = false;
       },
     },
