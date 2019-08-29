@@ -51,7 +51,7 @@
   import UserManager from "../UserManager"
 
   export default {
-    name: 'Create User',
+    name: 'CreateUser',
     data() {
       return {
         name: '',
