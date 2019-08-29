@@ -85,7 +85,9 @@
         this.isAdmin =false;
       },
       opened: function ( option ) {
-        this.reset()
+        if (typeof option === "undefined")
+             this.reset();
+        console.log("option", option)
         this.open = true;
       },
       removed: function () {
@@ -103,7 +105,7 @@
         this.notSaved = false;
         if (!this.validate()) return;
         this.userManager.register( this.name, this.email, this.zipCode,
-          this.isAdmin )
+          this.isAdmin );
         this.open = false;
       },
     },
