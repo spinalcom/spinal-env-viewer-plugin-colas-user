@@ -20,15 +20,17 @@ export class ButtonCreateColasUser extends SpinalContextApp {
     this.action = this.openPanel.bind( this );
   }
   
-  isShown(option) {
-    if (option.selectedNode.hasOwnProperty('name')
-      && (option.selectedNode.name.get() === ColasContextName || option.selectedNode.type.get() Promise.resolve(-1);
+  isShown( option ) {
+    if (option.selectedNode.name.get() === ColasContextName
+      || option.selectedNode.type.get() === ColasUserType)
+      return Promise.resolve( true );
+    return Promise.resolve( -1 );
   }
   
-  openPanel(option) {
-    console.log(option)
+  openPanel( option ) {
+    console.log( option )
     if (option.selectedNode.name.get === ColasContextName)
-    spinalPanelManagerService.openPanel( "CreateColasUser");
-    else spinalPanelManagerService.openPanel( "CreateColasUser", option.selectedNode);
+      spinalPanelManagerService.openPanel( "CreateColasUser" );
+    else spinalPanelManagerService.openPanel( "CreateColasUser", option.selectedNode );
   }
 }
