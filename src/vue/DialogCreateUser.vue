@@ -118,7 +118,7 @@
         this.userManager.register( this.name, this.email, this.zipCode,
           this.isAdmin );
         else
-          this.userManager.edit({name: this.name, email: this.email, zip:
+          this.userManager.editUser({name: this.name, email: this.email, zip:
             this.zipCode, isAdmin: this.isAdmin})
         this.open = false;
       },
