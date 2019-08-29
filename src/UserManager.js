@@ -73,64 +73,22 @@ export default class UserManager {
       });
   }
 
-  /**
-   * Compare to date return false if it the same day
-   * @param d1 previous date
-   * @param d2 new date
-   * @return {boolean}
-   * @private
-   */
-  isANewDay(d1, d2) {
-    return !(d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate());
-    
-  }
-
-  connect(id) {
-    return this.initialized
+  editUser(model){
+    this.initialized
       .then(() => this.colasUserContext.getChildren([ColasRelationName]))
       .then((children) => {
         for (let i = 0; i < children.length; i++) {
-          if (children[i].info.id.get() === id) {
-            const user = children[i];
-            const lastCo = new Date(user.lastCo.get());
-            if (this.isANewDay(lastCo, new Date())) {
-              user.nbConnection.set(user.nbConnection.get() + 1);
-            }
-            return children[i];
+          if (children[i].info.id.get() === model.id.get()){
+            const child = children[i];
+            child.info.name.set(model.name);
+            child.info.isAdmin.set(model.isAdmin);
+            child.info.zip.set(model.zip);
+            child.info.email.set(model.email);
+            return ;
           }
+          
         }
-        return false;
-      });
-  }
-
-  getUsers() {
-    return this.initialized
-      .then(() => this.colasUserContext.getChildren([ColasRelationName]));
-  }
-
-  getUser(id) {
-    return this.initialized
-      .then(() => this.colasUserContext.getChildren([ColasRelationName]))
-      .then((children) => {
-        for (let i = 0; i < children.length; i++) {
-          if (children[i].info.id.get() === id) {
-            return children[i];
-          }
-        }
-        return undefined;
-      });
-  }
-  
-  getUserByEmail(email){
-    return this.initialized
-      .then(() => this.colasUserContext.getChildren([ColasRelationName]))
-      .then((children) => {
-        for (let i = 0; i < children.length; i++) {
-          if (children[i].email.get() === email) {
-            return children[i];
-          }
-        }
-        return undefined;
-      });
+        return;
+      })
   }
 }
