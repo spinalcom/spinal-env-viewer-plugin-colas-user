@@ -6,7 +6,7 @@ const { spinalPanelManagerService } = require( "spinal-env-viewer-panel-manager-
 export class ButtonCreateColasUser extends SpinalContextApp {
   
   constructor() {
-    super( 'Edit timeline', 'Edit timeline', {
+    super( 'Create User', 'Create an user for the public awareness interface', {
       icon: 'add',
       icon_type: 'in',
       backgroundColor: '#000000',
@@ -17,7 +17,7 @@ export class ButtonCreateColasUser extends SpinalContextApp {
   }
   
   isShown(option) {
-    if (option.selectedNode.name.get() === "ColasUser")
+    if (option.selectedNode.hasOwnProperty('name') && option.selectedNode.name.get() === "ColasUser")
       return Promise.resolve( true );
     return Promise.resolve(-1);
   }
