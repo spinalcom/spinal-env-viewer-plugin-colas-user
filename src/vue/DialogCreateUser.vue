@@ -54,6 +54,7 @@
     name: 'CreateUser',
     data() {
       return {
+        id: '',
         name: '',
         email: '',
         zipCode: -1,
@@ -90,6 +91,7 @@
         this.email = model.email.get();
         this.zipCode = model.zip.get();
         this.isAdmin = model.isAdmin.get();
+        this.id = model.id.get();
         this.edit = true
       },
       opened: function ( option ) {
@@ -119,7 +121,7 @@
           this.isAdmin );
         else
           this.userManager.editUser({name: this.name, email: this.email, zip:
-            this.zipCode, isAdmin: this.isAdmin})
+            this.zipCode, isAdmin: this.isAdmin, id: this.id});
         this.open = false;
       },
     },
