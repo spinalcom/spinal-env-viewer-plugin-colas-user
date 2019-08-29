@@ -1,4 +1,8 @@
 import { SpinalContextApp } from 'spinal-env-viewer-context-menu-service';
+import {
+  ColasContextName,
+  ColasUserType
+} from "../UserManager";
 
 
 const { spinalPanelManagerService } = require( "spinal-env-viewer-panel-manager-service" );
@@ -17,12 +21,14 @@ export class ButtonCreateColasUser extends SpinalContextApp {
   }
   
   isShown(option) {
-    if (option.selectedNode.hasOwnProperty('name') && option.selectedNode.name.get() === "ColasUser")
-      return Promise.resolve( true );
-    return Promise.resolve(-1);
+    if (option.selectedNode.hasOwnProperty('name')
+      && (option.selectedNode.name.get() === ColasContextName || option.selectedNode.type.get() Promise.resolve(-1);
   }
   
-  openPanel() {
-    spinalPanelManagerService.openPanel( "CreateColasUser")
+  openPanel(option) {
+    console.log(option)
+    if (option.selectedNode.name.get === ColasContextName)
+    spinalPanelManagerService.openPanel( "CreateColasUser");
+    else spinalPanelManagerService.openPanel( "CreateColasUser", option.selectedNode);
   }
 }
