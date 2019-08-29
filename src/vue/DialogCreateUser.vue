@@ -34,9 +34,17 @@
                     ></v-checkbox>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn @click="save">
+                    <v-btn v-if="!edit"
+                           @click="save"
+                    >
                         Créer
                     </v-btn>
+                    <v-btn v-else
+                           @click="save"
+                    >
+                        Modifer
+                    </v-btn>
+
                     <v-btn @click="onClose">
                         close
                     </v-btn>
