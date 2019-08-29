@@ -4,10 +4,10 @@ import {
   SPINAL_RELATION_LST_PTR_TYPE,
   SpinalGraphService
 } from 'spinal-env-viewer-graph-service';
-const ColasContextName = 'ColasUser';
-const ColasRelationName = 'ColasUserRelationName';
+export const ColasContextName = 'ColasUser';
+ const ColasRelationName = 'ColasUserRelationName';
 const ColasRelationType = SPINAL_RELATION_LST_PTR_TYPE;
-const ColasUserType = 'ColasUser';
+export const ColasUserType = 'ColasUser';
 
 /**
  * Class used to retrieve the user
@@ -53,12 +53,12 @@ export default class UserManager {
       })
       .then((canRegister) => {
         if (canRegister) {
-          const user = new SpinalNode( email, undefined, undefined );
+          const user = new SpinalNode( name, undefined, undefined );
           const info = {
-            name: email,
             id: user.info.id.get(),
             type: ColasUserType,
             connections: [],
+            name,
             isAdmin,
             email,
             zip
