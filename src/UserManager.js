@@ -78,7 +78,7 @@ export default class UserManager {
       .then(() => this.colasUserContext.getChildren([ColasRelationName]))
       .then((children) => {
         for (let i = 0; i < children.length; i++) {
-          if (children[i].info.id.get() === model.id.get()){
+          if (children[i].info.id.get() === model.id){
             const child = children[i];
             child.info.name.set(model.name);
             child.info.isAdmin.set(model.isAdmin);
