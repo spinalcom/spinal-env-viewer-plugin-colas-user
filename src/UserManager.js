@@ -85,7 +85,7 @@ export default class UserManager {
             child.info.zip.set(model.zip);
             child.info.email.set(model.email);
             if (model.password !== "")
-              child.info.mod_attr('password', password);
+              child.info.mod_attr('password', model.password);
             return ;
           }
           
