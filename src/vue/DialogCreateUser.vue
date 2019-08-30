@@ -102,9 +102,13 @@
         this.isAdmin =false;
       },
       init: function(model){
+        if (model.hasOwnProperty('name'))
         this.name = model.name.get();
+        if (model.hasOwnProperty('email'))
         this.email = model.email.get();
+        if (model.hasOwnProperty('zip'))
         this.zipCode = model.zip.get();
+        if (model.hasOwnProperty('isAdmin'))
         this.isAdmin = model.isAdmin.get();
         if (model.hasOwnProperty('password'))
           this.password = model.password;
@@ -116,7 +120,7 @@
         if (typeof option === "undefined")
              this.reset();
         else
-          this.init(option)
+          this.init(option);
 
         this.open = true;
       },
