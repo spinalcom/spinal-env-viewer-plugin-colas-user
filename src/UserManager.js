@@ -42,12 +42,12 @@ export default class UserManager {
       });
   }
 
-  register(name, email, zip, isAdmin) {
+  register(name, email, zip, isAdmin, password) {
     return this.initialized
       .then(() => this.colasUserContext.getChildren([ColasRelationName]))
       .then((children) => {
         for (let i = 0; i < children.length; i++) {
-          if (children[i].email.get() === email) return false;
+          if (children[i].info.hasOwnProperty('email') &&  children[i].info.email.get() === email) return false;
         }
         return true;
       })
@@ -61,6 +61,7 @@ export default class UserManager {
             name,
             isAdmin,
             email,
+            password,
             zip
           };
           user.mod_attr( 'info', info);
