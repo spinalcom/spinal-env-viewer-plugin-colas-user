@@ -37,8 +37,7 @@ export class ButtonCreateColasUser extends SpinalContextApp {
   }
   
   openPanel( option ) {
-    console.log( option )
-    if (option.selectedNode.name.get === ColasContextName)
+    if (option.selectedNode.name.get() === ColasContextName)
       spinalPanelManagerService.openPanel( "CreateColasUser" );
     else spinalPanelManagerService.openPanel( "CreateColasUser", option.selectedNode );
   }

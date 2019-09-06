@@ -1,7 +1,7 @@
 <template>
     <v-app dark>
         <v-dialog
-                v-model="open"  width="500">
+                v-model="open" width="500">
             <v-card>
                 <v-card-title>
                     <h3> Information utilisateur</h3>
@@ -95,22 +95,22 @@
       },
     },
     methods: {
-      reset: function(){
+      reset: function () {
         this.name = "";
         this.email = "";
         this.zipCode = -1;
-        this.isAdmin =false;
+        this.isAdmin = false;
       },
-      init: function(model){
-        if (model.hasOwnProperty('name'))
-        this.name = model.name.get();
-        if (model.hasOwnProperty('email'))
-        this.email = model.email.get();
-        if (model.hasOwnProperty('zip'))
-        this.zipCode = model.zip.get();
-        if (model.hasOwnProperty('isAdmin'))
-        this.isAdmin = model.isAdmin.get();
-        if (model.hasOwnProperty('password'))
+      init: function ( model ) {
+        if (model.hasOwnProperty( 'name' ))
+          this.name = model.name.get();
+        if (model.hasOwnProperty( 'email' ))
+          this.email = model.email.get();
+        if (model.hasOwnProperty( 'zip' ))
+          this.zipCode = model.zip.get();
+        if (model.hasOwnProperty( 'isAdmin' ))
+          this.isAdmin = model.isAdmin.get();
+        if (model.hasOwnProperty( 'password' ))
           this.password = model.password;
 
         this.id = model.id.get();
@@ -118,9 +118,9 @@
       },
       opened: function ( option ) {
         if (typeof option === "undefined")
-             this.reset();
+          this.reset();
         else
-          this.init(option);
+          this.init( option );
 
         this.open = true;
       },
@@ -129,22 +129,26 @@
       closeDialog: function () {
 
       },
-      onClose: function(){
+      onClose: function () {
         this.open = false;
       },
       validate() {
-        return this.name !== '' &&this.email !== '' && this.zipCode !== -1;
+        return this.name !== '' && this.email !== '' && this.zipCode !== -1;
       },
       save() {
         this.notSaved = false;
         if (!this.validate()) return;
-        if (!this.edit)
-        this.userManager.register( this.name, this.email, this.zipCode,
-          this.isAdmin );
-        else
-          this.userManager.editUser({name: this.name, email: this.email, zip:
+        if (!this.edit) {
+
+          this.userManager.register( this.name, this.email, this.zipCode,
+            this.isAdmin, this.password );
+        } else {
+          this.userManager.editUser( {
+            name: this.name, email: this.email, zip:
             this.zipCode, isAdmin: this.isAdmin, id: this.id, password:
-            this.password});
+            this.password
+          } );
+        }
         this.open = false;
       },
     },

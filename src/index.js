@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 
-Vue.use(Vuetify);
+Vue.use( Vuetify );
 
 import {
   SpinalMountExtention
@@ -14,11 +14,9 @@ import { ButtonCreateColasUser } from "./buttons/ButtonCreateColasUser";
 import DialogCreateUser from "./vue/DialogCreateUser.vue";
 
 
-
- const SIDE_BAR_HOOK_NAME = "GraphManagerSideBar";
+const SIDE_BAR_HOOK_NAME = "GraphManagerSideBar";
 
 spinalContextMenuService.registerApp( SIDE_BAR_HOOK_NAME, new ButtonCreateColasUser(), [7] );
-
 
 
 SpinalMountExtention.mount( {
